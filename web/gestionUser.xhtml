@@ -1,0 +1,119 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:b="http://bootsfaces.net/ui">
+    <h:head>
+        <title>Shopping *****</title>
+        <link rel="stylesheet" href="Fichier/css.css"></link>
+    </h:head>
+    <h:body>
+        <f:view>
+            <b:container fluid="true" id="allcontent">
+                <b:row id="navba">
+                    
+                            <b:column span="2">
+                                <b:navbarLinks>
+                                    <p:graphicImage class="navbar-bran hidden-xs" height="45" value="Images/Capture cop.JPG"/>
+                                </b:navbarLinks>
+                                
+                                <b:navbarLinks id="overf">
+                                    <b:dropMenu value="CATEGORIE">
+                                        <b:navLink outcome="vehicule.xhtml" class="categorie" value="VEHICULE"/>
+                                        <b:dropMenu class="categorie" value="VETEMENT">
+                                            <b:navLink class="categorie" value="HOMME"/>
+                                            <b:navLink class="categorie" value="FEMME"/>
+                                            <b:navLink class="categorie" value="ENFANT"/>
+                                        </b:dropMenu>
+                                        <b:navLink class="categorie" value="MACHINE"/>
+                                        <b:navLink class="categorie" value="PRODUIT ALIMENTAIRE"/>
+                                    </b:dropMenu>   
+                                </b:navbarLinks>
+                            
+                            <a href="index.xhtml"></a>
+                        </b:column>
+                    
+                        <b:column col-md="4">
+                                <b:form class="navbar-form navbar-left hidden-md hidden-sm hidden-xs " role="search">
+                                    <p:autoComplete  var="x" value="#{achatController.p}" size="75"
+                                                    itemValue="x" 
+                                                    forceSelection="true"
+                                                    completeMethod="#{achatController.chargerProduit()}" 
+                                                    itemLabel="#{x.designation}"
+                                                    style="border-radius: 0px;"
+                                                    placeholder="search" >
+                                        <f:facet name="prepend">
+                                            <b:iconAwesome name="key" />
+                                        </f:facet>
+                                    </p:autoComplete>         
+                                </b:form>  
+                        </b:column>
+                    
+                        <b:column col-md="6">
+                                <b:navbarLinks style="float: right;"> 
+                                    <b:navLink icon="home" value="home" outcome="index.xhtml" ></b:navLink>
+                                    <b:navLink icon="user" value="Connexion" onclick="PF('connexion').show();"></b:navLink> 
+                                    <b:navLink value="Inscription" outcome="inscription.xhtml" ></b:navLink>
+                                    <b:navbarLinks>
+                                        <p:graphicImage class="navbar-bran hidden-xs" height="45" value="Images/panier1.png"/>
+                                    </b:navbarLinks>
+                                </b:navbarLinks>
+                        </b:column>
+                </b:row>
+                
+                <b:row style="margin-top: 60px;">
+                    
+                    <b:column span="2" id="contentMenu" style=" background-color: rgb(92,92,92); height: 530px; ">
+                        <p style="margin-left: 50px; margin-top: 50px"><b:navLink icon="user" value="Creer" onclick="PF('inscription').show();"></b:navLink></p>
+                        <p style="margin-left: 50px;"><b:navLink icon="user" value="Modifier" onclick="PF('modifier').show();"></b:navLink></p>
+                        <p style="margin-left: 50px;"><b:navLink icon="user" value="Consulter" onclick="PF('consulter').show();"></b:navLink></p>
+                        <p style="margin-left: 50px"><b:navLink icon="user" value="Supprimer" onclick="PF('supprimer').show();"></b:navLink></p>
+                    </b:column>
+                    
+                    <b:column span="10" style=" background-color:lightseagreen; height: 530px;">
+                        <p style="text-align: center">Actualités du jour</p>
+                        <p:dialog style="margin-top: 53px; margin-left: 20px;" header="Les administrateurs :" id="dialoge" visible="false" widgetVar="inscription" width="380" resizable="false">
+                        <b:form id="formInscriptio" class="col-md-12 col-xs-4 hidden-xs">
+                            <p:messages id="msg2" showDetail="true" closable="true"/>
+                            <p><h3>Creer un compte</h3></p>
+                            <b:panelGrid columns="1" id="panel">
+                                <p:outputLabel class="label1" value="Nom :"/>
+                                <b:inputText  id="nom" value="#{userController.nom}" title="Adresse mail" placeholder="Nom" required="true">
+                                </b:inputText>
+                                
+                                <p:outputLabel class="label1" value="Prenom"/>
+                                <b:inputText id="prenom" value="#{userController.prenom}" title="Prenom" />
+                                
+                                <p:outputLabel class="label1" value="Matricule:"/>
+                                <b:inputSecret id="matricule" value="#{userController.matricule}" title="Matricule" placeholder="Matricule" />
+                                
+                                <p:outputLabel class="label1" value="Confirmer matricule:"/>
+                                <b:inputSecret id="matricule1" value="#{userController.confirmmatricule}"/>
+                                
+                                <p:outputLabel class="label1" value="Telephone:"/>
+                                <b:inputText type="phone" id="telephone" value="#{userController.telephone}"/>
+                                
+                                <p:outputLabel class="label1" value="Fonction:"/>
+                                <b:inputText id="fonction" value="#{userController.fonction}"/>
+                            </b:panelGrid>
+                            
+                            <b:commandButton icon="user" value="valider" actionListener="#{userController.createUser()}" update=":formInscriptio:msg2"/>
+                            <b:commandButton icon="error" value="Annuler" style="float:right">
+                                <p:ajax update="panel" resetValues="true"/>
+                            </b:commandButton>
+                   </b:form>
+                </p:dialog>
+                    </b:column>
+                </b:row>
+                
+            </b:container>
+        </f:view>      
+    </h:body>
+</html>
+
+
+
+
+

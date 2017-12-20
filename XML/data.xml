@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Articles>
+    <GROUP_ORDINATEUR>
+        <SOUS_GROUP_OR_DESKTOP>
+            <MARQUE_DESKTOP_DELL></MARQUE_DESKTOP_DELL>
+            <MARQUE_DESKTOP_HP></MARQUE_DESKTOP_HP>
+            <MARQUE_DESKTOP_SAMSUNG></MARQUE_DESKTOP_SAMSUNG>
+        </SOUS_GROUP_OR_DESKTOP>
+        <SOUS_GROUP_OR_LAPTOP>
+            <MARQUE_LAPTOP_DELL></MARQUE_LAPTOP_DELL>
+            <MARQUE_LAPTOP_HP></MARQUE_LAPTOP_HP>
+            <MARQUE_LAPTOP_SAMSUNG></MARQUE_LAPTOP_SAMSUNG>
+            <MARQUE_LAPTOP_ACER></MARQUE_LAPTOP_ACER>
+            <MARQUE_LAPTOP_IBM></MARQUE_LAPTOP_IBM>
+            <MARQUE_LAPTOP_MAC1></MARQUE_LAPTOP_MAC1>    
+        </SOUS_GROUP_OR_LAPTOP>
+    </GROUP_ORDINATEUR>
+    <GROUP_VETEMENTS>
+        <HOMME>
+            <t-shirts>
+                <t-shirt1>col v</t-shirt1>
+                <t-shirt2>lacoste</t-shirt2>
+            </t-shirts>
+            <pantalons>
+                <pantalon0>djin</pantalon0>
+                <pantalon1>super-cent</pantalon1>
+            </pantalons>
+            <chaussures>
+                <chaussures1>zara</chaussures1>
+                <chaussures2>all-star</chaussures2>
+            </chaussures>
+        </HOMME>
+    </GROUP_VETEMENTS>
+</Articles>

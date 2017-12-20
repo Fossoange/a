@@ -1,0 +1,120 @@
+#navbar{
+    background-color: white;
+    border: none;
+    letter-spacing: 1px;
+    font-size: 12px;
+    border-radius: 0px;
+    margin: 0px;
+    transition: 1s;
+    margin-top: -60px;
+    
+}
+#allcontent{
+    padding: 0px;
+}
+.label1{
+    font-size: 15px;
+}
+#mybody{
+    background-image: url("../Images/images_012_1.jpg");
+    background-repeat: no-repeat;
+    background-size: 100%; 
+}
+#formInscription{
+    margin:0 0 30px 400px;
+    width: 330px;
+    box-shadow: 5px 5px 25px #ccc;
+    padding: 15px;
+    
+}
+
+.categorie{
+    font-size: 10px;
+}
+
+#panier{
+    margin-left: 183px;
+}
+.contain{
+    letter-spacing: 2px;
+    font-size: 10px;
+    font-family: Arial;
+    border: none;
+    
+    
+}
+.navbarcontent{
+    background-color: white;
+    border:none;
+}
+
+.ove:hover{
+    background-color: black;
+}
+
+.ui-carousel .ui-carousel-header{
+    background-color: white;
+    overflow: hidden;
+}
+#dynamictable{
+    border: 0px;
+}
+.lab1,.text1{
+    margin-top: 80px;
+}
+.lab2,.text2{
+    margin-top: 20px;
+}
+.passeoublier{
+    font-family: verdana;
+    font-weight: 800;
+    color: blue;
+    letter-spacing: 2px;
+}
+.passeoublier:hover{
+    text-transform: none;
+}
+
+.spanconnexion{
+    font-size: 31px;    
+}
+.ui-datatable-resizable thead th{
+    border: none !important;
+}
+
+.ui-dialog-title{  
+    font-size: 17px;
+    font-weight: 300; 
+}
+
+.ui-dialog-titlebar{
+   background-color: white;
+   
+}
+.ui-dialog .ui-dialog-titlebar{
+    border-bottom: 1px dashed #ccc;
+}
+.input-group-addon:first-child,input-group-addon:first-child{
+    background-color: white;
+}
+#inputmail,#inputpassword{
+     border-radius: 0px; box-shadow: 2px rgb(183,183,183) inset;
+}
+.navbar-nav > li > a{
+    color: black;
+}
+.ui-widget-content{
+    border:0px !important;
+}
+.animationheader{
+    margin-top:0px !important;
+}
+#j_idt30 > a ,#j_idt32  > a,#j_idt34 > a,#j_idt36 > a{
+    color:white !important;
+    letter-spacing: 2px;
+    font-size: 14px;
+    font-weight: 300;
+}
+#j_idt22,#j_idt22,#j_idt24{
+    font-size: 14px;
+}

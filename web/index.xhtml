@@ -1,0 +1,247 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">  
+       <h:head>
+        <title>Shopping *****</title>
+        <link rel="stylesheet" href="Fichier/css.css"></link>
+        <script language="javascript" src="Fichier/javaScript.js"></script>
+    </h:head>
+    <h:body>
+        <f:view>
+            <b:container fluid="true" id="allcontent">
+                <b:row id="navbar">
+                            <b:column span="2">
+                                <b:navbarLinks>
+                                    <p:graphicImage class="navbar-bran hidden-xs" height="45" value="Images/Capture cop.JPG"/>
+                                </b:navbarLinks>
+                                
+                                <b:navbarLinks id="overf">
+                                    <b:dropMenu value="CATEGORIE">
+                                        <b:navLink outcome="vehicule.xhtml" class="categorie" value="VEHICULE"/>
+                                        <b:dropMenu class="categorie" value="VETEMENT">
+                                            <b:navLink class="categorie" value="HOMME"/>
+                                            <b:navLink class="categorie" value="FEMME"/>
+                                            <b:navLink class="categorie" value="ENFANT"/>
+                                        </b:dropMenu>
+                                        <b:navLink class="categorie" value="MACHINE"/>
+                                        <b:navLink class="categorie" value="PRODUIT ALIMENTAIRE"/>
+                                    </b:dropMenu>   
+                                </b:navbarLinks>
+                            
+                            <a href="index.xhtml"></a>
+                        </b:column>
+                    
+                        <b:column col-md="4">
+                                <b:form class="navbar-form navbar-left hidden-md hidden-sm hidden-xs " role="search">
+                                    <p:autoComplete  var="x" value="#{achatController.p}" size="60"
+                                                    itemValue="x" 
+                                                    forceSelection="true"
+                                                    completeMethod="#{achatController.chargerProduit()}" 
+                                                    itemLabel="#{x.designation}"
+                                                    style="border-radius: 0px;"
+                                                    placeholder="search" >
+                                        
+                                    </p:autoComplete>         
+                                </b:form>  
+                        </b:column>
+                    
+                        <b:column col-md="6">
+                                <b:navbarLinks style="float: right;"> 
+                                    <b:navLink icon="home" value="home" outcome="index.xhtml" ></b:navLink>
+                                    <b:navLink icon="user" value="Connexion" onclick="PF('connexion').show();"></b:navLink> 
+                                    <b:navLink value="Inscription" outcome="inscription.xhtml" ></b:navLink>
+                                    <b:navbarLinks>
+                                        <p:graphicImage class="navbar-bran hidden-xs" height="45" value="Images/panier1.png"/>
+                                    </b:navbarLinks>
+                                </b:navbarLinks>
+                        </b:column>
+                </b:row>
+                
+                
+                <b:container fluid="true"  style="letter-spacing: 7px;" class="hidden-xs">
+                        <marquee><panel style="font-size: 20px; font-weight: 500;color: darkolivegreen">C&rsquo;est déjà noel !</panel>&ensp;&ensp;<panel style="font-size: 20px; font-weight: 700;color: chartreuse">50%</panel>&ensp;<panel style="font-size: 20px; font-weight: 500;color: darkolivegreen">de reduction sur tous nos produits.</panel></marquee>
+                </b:container>
+                <!-- connexion -->
+               <p:dialog  id="dialoge" visible="false" header="connexion" widgetVar="connexion" height="400" width="380" resizable="false">
+                        <b:form id="formConnexion" >   
+                            <b:growl id="msg"  showDetail="true"/>
+                            
+                                <Label style="margin-top: 33px; font-weight: 100">Adresse :</Label> 
+                                <b:inputText id="inputmail" type="email" onfocus="true" value="#{userController.login}" placeholder="Example : maximcharles@gmail.com">
+                                <f:facet name="prepend">
+                                    <b:iconAwesome name="user"/>
+                                </f:facet>
+                                </b:inputText>
+                                
+                                <Label style="margin-top: 10px; font-weight: 100" >Passeword :</Label>
+                                <b:inputSecret id="inputpassword" value="#{userController.passeword}" placeholder="Entrer votre mot de passe">
+                                    <f:facet name="prepend">
+                                        <b:iconAwesome name="key" style="background-color: white"/>
+                                    </f:facet>
+                                </b:inputSecret><br></br>
+                                
+                                 <input type="checkbox"> &nbsp;Restez-connecte ?</input>
+                                 
+                                 <b:commandButton style=" width: 100%; margin-top: 30px; " icon="user" class="boutonvalider btn-success" value="valider" actionListener="#{userController.connexion()}" update=":formConnexion:msg">
+                                </b:commandButton>
+                                 
+                                <b:row id="rowconnection" style="margin-top:40px">
+                                    <b:column  span="4" style="text-decoration: underline;"><b:navLink outcome="inscription.xhtml">S'inscrire</b:navLink></b:column>
+                                    <b:column span="8" style="text-decoration: underline;"><b:navLink outcome="index.xhtml">J'ai oublié mon mot de passe</b:navLink></b:column>
+                                </b:row><br></br>
+                        </b:form>
+                </p:dialog>
+                
+                <!-- Slide product-->
+                <b:container fluid="true" style="margin-top:10px" class="contentslide">
+                    <p:imageSwitch styleClass="img-responsive" effect="shuffle" widgetVar="switcher" speed="500" id="fadeEffectImages" slideshowAuto="true" >
+                        <ui:repeat value="#{produitController.nomImages()}" var="image">
+                            <p:graphicImage id="imageslide" class="img-responsive col-md-12" value="/Images/#{image.toString()}" />
+                        </ui:repeat>
+                    </p:imageSwitch> 
+                </b:container>
+                
+                <!-- Tableau des produit -->
+                <b:container  fluid="true" style="margin-top: 60px;"> 
+                    <b:column styleClass="table-responsive"  style="">
+                        <p:growl id="msgs" showDetail="true"/>
+                         <h:form id="myForm">
+                             <p:dataTable id="dynamictable" resizableColumns="true" widgetVar="produitselect"
+                                         var="produit" value="#{shopping.chargerProduit()}" selectionMode="multiple" rowKey="#{produit.idproduit}" rows="10"
+                                         rowsPerPageTemplate="5,10,15" rowStyleClass="#{produit.idproduit > 2 ? 'red' : null}"
+                                         selection="#{shopping.panier}">
+                                
+                                <p:ajax event="rowSelect" listener="#{shopping.onrowSlected}" update="msgs"/>
+
+                                <!--<p:column visible="false" headerText="ID" sortBy="{produit.idproduit}" filterBy="{produit.idproduit}">
+                                    <h:outputText  value="{produit.idproduit}" />
+                                </p:column>-->
+                                
+                                <p:column style="background-color: white">
+                                    <b:column style="  text-align: center; background-color: white;">
+                                        <h5><span style="font-size:23px; font-weight: 900;">#{produit.prixunitaire} Fcfa</span></h5>
+                                        <h6><span style="font-size:23px; font-weight: 900;">Description : </span><span style=" font-weight: 900;font-size:23px;">#{produit.description}</span></h6>
+                                    </b:column>
+                                    <b:column style="text-align:center; margin-bottom: 80px; margin-top:80px;">
+                                        <h:graphicImage value="Images/#{produit.labelImage}"/>
+                                    </b:column>
+                                </p:column>
+
+                            <p:column visible="false" headerText="Prix unitaire" sortBy="#{produit.prixunitaire}" filterBy="#{produit.prixunitaire}">
+                                <h:outputText value="#{produit.prixunitaire}"/>
+                            </p:column>
+                        </p:dataTable>
+                       </h:form>
+                    </b:column>
+                    <!--<b:column span="4">
+                       
+                            <p:dataTable var="po" value="{produitController.nomImages()}" >
+                                <p:column>
+                                    <a><p:graphicImage value="Images/{po.toString()}"/></a>
+                                </p:column>
+                            </p:dataTable>
+                    </b:column>
+                    <b:column span="4" style="background-color: yellow;">
+                       
+                    </b:column> -->
+                    
+                </b:container>
+                
+                <b:container fluid="true" style="margin-top: 40px;background-color: lightblue" class="">
+                    <b:column span="2" style="height: 70px; border-radius: 100%; text-align: center; padding-top: 5px;">
+                        <p:outputLabel value="100% de reduction sur nos produits tous types."/>
+                    </b:column>
+                    <b:column span="2" style="height: 70px;  border-radius: 100%; text-align: center; padding-top: 5px;">
+                        <p:outputLabel value=""/>
+                    </b:column>
+                    <b:column span="2" style="height: 70px;  border-radius: 100%; text-align: center; padding-top: 5px;">
+                        <p:outputLabel value="100% de reduction sur nos produits tous types."/>
+                    </b:column>
+                    <b:column span="2" style="height: 70px;  border-radius: 100%; text-align: center; padding-top: 5px;">
+                        <p:outputLabel value=""/>
+                    </b:column>
+                    <b:column span="2" style="height: 70px;  border-radius: 100%; text-align: center; padding-top: 5px;">
+                        <p:outputLabel value="100% de reduction sur nos produits tous types."/>
+                    </b:column>
+                    <b:column span="2" style="height: 70px;  border-radius: 100%; text-align: center; padding-top: 5px;">
+                        <p:outputLabel value=""/>
+                    </b:column>
+                    
+                </b:container>
+                
+                <b:container fluid="true"  style="margin-top: 50px; background-color: rgb(195,195,195)">
+                    <b:column span="4">
+                        <b:form>
+                            <p:outputLabel style="font-weight: 900;" value="Nous contactés"/><br></br><br></br>
+                            <b:icon name="phone"/>&ensp;<span style="font-size:13px;">672 64 18 86 / 691 97 70 48</span><br></br><br></br>
+                            <b:icon name="user"/> &ensp;<span style="font-size:13px;">angelfosso@gmail.com / ebwelepascal@gmail.com</span>
+                            
+                        </b:form>
+                    </b:column>
+                        
+                    <b:column span="4">
+                        <p:outputLabel style="font-weight: 900;" value="Nos partenaires"/>
+                        <p:outputLabel value="Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                                       sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                                       Ut enim ad minim veniam
+                                       Lorem ipsum dolor sit amet,
+                                       consectetur adipiscing elit, 
+                                       sed do eiusmod tempor incididunt ut labore 
+                                       et dolore magna aliqua. Ut enim ad minim veniam"
+                        />
+                    </b:column>
+                    
+                    <b:column span="4">
+                        <p:outputLabel style="font-weight: 900;" value="Autres"/>
+                        <p:outputLabel value="Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                                       sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                                       Ut enim ad minim veniam
+                                       Lorem ipsum dolor sit amet,
+                                       consectetur adipiscing elit, 
+                                       sed do eiusmod tempor incididunt ut labore 
+                                       et dolore magna aliqua. Ut enim ad minim veniam"
+                        />
+                    </b:column>
+                    
+                <!--<h:form>
+                <h1><h:outputText value="nouveau produit"/></h1>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="Designation" class="design" for="ProduitController"/>
+                    <h:inputText value="{produitController.designation}"/>
+                    <h:outputLabel value="Prix unitaire" class="pu" for="ProduitController"/>
+                    <h:inputText value="{produitController.pu}"/>
+                    <h:outputLabel value="Categorie" class="cat" for="ProduitController"/>
+                    <h:inputText value="{produitController.categorie}"/>
+                    <h:outputLabel value="Famille" class="famille" for="ProduitController"/>
+                    <h:inputText value="{produitController.famille}"/>
+                    <h:outputLabel value="Sous Famille" class="sf" for="ProduitController"/>
+                    <h:inputText value="{produitController.sousfamille}"/>
+                    <h:outputLabel value="Description" class="description" for="ProduitController"/>
+                    <h:inputText value="{produitController.description}"/>
+                    <h:outputLabel value="Code" class="cod" for="ProduitController"/>
+                    <h:inputText value="{produitController.code}"/>
+                    <h:outputLabel value="ImageName :" class="cod" for="ProduitController"/>
+                    <h:inputText value="{produitController.labelImage}"/>
+                </h:panelGrid>
+                <h:commandButton value="valider" actionListener="{produitController.createProduct()}"></h:commandButton> 
+            </h:form>-->
+                
+                </b:container>
+                <b:container fluid="true" style="margin-top: 2px; background-color: rgba(70,70,70,.4);">
+                    <b:column span="8">
+                        <span style="font-weight: 800;">Powered by</span><span style="font-weight: 800; letter-spacing: 3px; font-size: 14px;"> FOSSO Ange &amp; EBWELLE Pascal</span>
+                    </b:column>
+                    <b:column span="4">
+                        <span style="font-weight: 800;">Web design:</span><span style="font-weight: 800; letter-spacing: 3px; font-size: 14px;"> EBWELLE Pascal ...</span> 
+                    </b:column>
+                </b:container>
+            </b:container>
+        </f:view>      
+    </h:body>
+</html>
+

@@ -1,0 +1,43 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:b="http://bootsfaces.net/ui">
+    <h:head>
+        <title>Shopping *****</title>
+        <link rel="stylesheet" href="Fichier/css.css"></link>
+    </h:head>
+    <h:body id="mybody">
+        <f:view>
+            <b:container fluid="true" id="all">
+                <b:container style="margin-top: 100px;">
+                    <b:form id="formConnexion" style="margin: 0 400px 0 400px;box-shadow: 5px 5px 25px #ccc; padding:15px " >   
+                            <b:growl id="msg"  showDetail="true"/> 
+                                <Label style="margin-top: 33px; font-weight: 700">Login :</Label> 
+                                <b:inputText id="inputmail" onfocus="true" value="#{userController.logsuperuser}" placeholder="Entrer votre login">
+                                <f:facet name="prepend">
+                                    <b:iconAwesome name="user"/>
+                                </f:facet>
+                                </b:inputText><br></br>
+                                
+                                <Label style="margin-top: 10px; font-weight: 700" >Passeword :</Label>
+                                <b:inputSecret id="inputpassword" value="#{userController.passsuperuser}" placeholder="Entrer votre mot de passe">
+                                    <f:facet name="prepend">
+                                        <b:iconAwesome name="key" style="background-color: white"/>
+                                    </f:facet>
+                                </b:inputSecret><br></br>
+                        
+                                 
+                                <b:commandButton style=" width: 100%; margin-top: 30px; " icon="user" class="boutonvalider btn-success" value="valider" action="#{userController.superUtilisateur()}" update=":formConnexion:msg">
+                                </b:commandButton><br></br><br></br>
+                                 
+                                
+                        </b:form>
+                   </b:container>
+            </b:container>
+        </f:view>      
+    </h:body>
+</html>
+

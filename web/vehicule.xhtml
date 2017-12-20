@@ -1,0 +1,105 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">  
+       <h:head>
+        <title>Charles *****</title>
+        <link rel="stylesheet" href="Fichier/css.css"></link>
+    </h:head>
+    <h:body>
+        <f:view>
+            <b:container fluid="true" id="allcontent">
+                <b:navBar id="navbar">
+                    <b:column span="4">
+                            <b:navbarLinks>
+                                <p:graphicImage height="40" value="Images/Capture cop.JPG"/>
+                            </b:navbarLinks>
+                        </b:column>
+                        <b:column col-md="8">
+                            <b:navbarLinks style="float: right;">
+                                 <b:navLink icon="home" value="home" outcome="index.xhtml" ></b:navLink>
+                                <b:navLink icon="user" value="Connexion" onclick="PF('connexion').show();"></b:navLink> 
+                                <b:navLink value="Inscription" outcome="inscription.xhtml" ></b:navLink>
+                            </b:navbarLinks>
+                        </b:column>
+                </b:navBar>
+                
+                <b:row class="contain" style="margin-top: -21px;">
+                    <b:navBar class="navbarcontent" >
+                            <b:column span="3">
+                                <b:navbarLinks id="overf">
+                                    <b:dropMenu value="CATEGORIE">
+                                        <b:navLink class="categorie" value="VEHICULE"/>
+                                        <b:dropMenu class="categorie" value="VETEMENT">
+                                            <b:navLink class="categorie" value="HOMME"/>
+                                            <b:navLink class="categorie" value="FEMME"/>
+                                            <b:navLink class="categorie" value="ENFANT"/>
+                                        </b:dropMenu>
+                                        <b:navLink class="categorie" value="MACHINE"/>
+                                        <b:navLink class="categorie" value="PRODUIT ALIMENTAIRE"/>
+                                    </b:dropMenu>
+                                    
+                                </b:navbarLinks>
+                            </b:column>
+                            
+                             <b:column span="6">
+                                <b:form class="navbar-form navbar-left hidden-md hidden-sm hidden-xs " role="search">
+                                    <p:autoComplete  var="x" value="#{achatController.p}" size="50"
+                                                    itemValue="x" 
+                                                    forceSelection="true"
+                                                    completeMethod="#{achatController.chargerProduit()}" 
+                                                    itemLabel="#{x.designation}"
+                                                    style="border-radius: 0px;"
+                                                    placeholder="search" >
+                                    </p:autoComplete>         
+                                </b:form>
+                           </b:column>
+                        
+                           <b:column span="3">
+                               <b:navbarLinks>
+                                   <a href="#" title="mon panier">
+                                       <p:graphicImage id="panier" height="40" value="Images/panier1.png"/> 
+                                        
+                                            <p:effect id="effectDeChoix" event="load" type="bounce" delay="500">
+
+                                                <panel id="nbrproduit" style="font-weight: 800; margin-left: -10px; font-size: 11px; color: rgba(0,128,0,.7);" >#{shopping.nbredeproduitselectionné}</panel>
+
+                                            </p:effect>
+                                   </a>
+                               </b:navbarLinks>
+                           </b:column>
+                        
+                        </b:navBar>
+                </b:row>
+     
+                <!-- connexion -->
+                <p:dialog style="background-color: gainsboro;" visible="false" header="connexion" widgetVar="connexion">
+                        <b:form id="formConnexion" >
+                            <p:growl id="msg" showDetail="true"/>
+                            <b:panelGrid columns="2">
+                                <p:outputLabel value="Login"/>
+                                <b:inputText onfocus="true" value="#{userController.login}" placeholder="your name" />
+                                <p:outputLabel value="Passeword" />
+                                <b:inputSecret value="#{userController.passeword}" placeholder="your passeword"/>
+                            </b:panelGrid>
+                            <p:commandButton value="valider" actionListener="#{userController.connexion()}" update=":formConnexion:msg"/>
+                        </b:form>
+                </p:dialog>
+                
+                <b:container style="text-align: center;">
+                    <p:imageSwitch effect="turnDown" widgetVar="switcher" id="fadeEffectImages" slideshowAuto="true" >
+                        <ui:repeat value="#{produitController.nomImages()}" var="image">
+                            <p:graphicImage class="col-xs-12" width="1100" height="400" value="/Images/#{image.toString()}" id="image"/>
+                        </ui:repeat>
+                    </p:imageSwitch>
+                </b:container>
+                
+            </b:container>
+        </f:view>      
+    </h:body>
+</html>
+
