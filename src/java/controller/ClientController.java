@@ -30,8 +30,9 @@ public class ClientController implements Serializable {
     private int telephone;
     private String login;
     private String passeword;
-    private static String annuler = "non";
+    private final String annuler = "non";
     private Client client = new Client();
+    private Client clien1=new Client();
     private String confirpassword;
 
     /**
@@ -45,9 +46,6 @@ public class ClientController implements Serializable {
         return annuler;
     }
 
-    public void setAnnuler(String annuler) {
-        this.annuler = annuler;
-    }
 
     public String getConfirpassword() {
         return confirpassword;
@@ -130,6 +128,32 @@ public class ClientController implements Serializable {
         }else{
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Erreur","Certains champs son vide."));
         } 
+    }
+    
+    public String connexion(){
+        try{
+                clien1=this.clientFacade.findByName(login);
+                if(clien1 !=null){
+                    if(clien1.getPasseword().equals(this.passeword)){
+                            System.out.println("connecté");
+                            FacesMessage msg=new FacesMessage("Connecté !", "connecté !");
+                            FacesContext.getCurrentInstance().addMessage("vue", msg);
+                        
+                    }else{
+                        System.out.println("Login ou mot de passe incorret !");
+                        FacesMessage msg=new FacesMessage("Error", "Mot de passe innexistant");
+                        FacesContext.getCurrentInstance().addMessage("vue", msg);
+                    }
+                 }else{
+                    FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error!", "Mot de passe incorrect."));
+                 }
+                
+            }catch(Exception e){
+                FacesMessage msg=new FacesMessage("Error !","veuillez bien renseigné tout vos champ");
+                        FacesContext.getCurrentInstance().addMessage("vue", msg);
+            }
+         return null;
+          
     }
     
 }

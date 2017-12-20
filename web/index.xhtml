@@ -72,14 +72,14 @@
                             <b:growl id="msg"  showDetail="true"/>
                             
                                 <Label style="margin-top: 33px; font-weight: 100">Adresse :</Label> 
-                                <b:inputText id="inputmail" type="email" onfocus="true" value="#{userController.login}" placeholder="Example : maximcharles@gmail.com">
+                                <b:inputText id="inputmail" type="email" onfocus="true" value="#{clientController.login}" placeholder="Example : maximcharles@gmail.com">
                                 <f:facet name="prepend">
                                     <b:iconAwesome name="user"/>
                                 </f:facet>
                                 </b:inputText>
                                 
                                 <Label style="margin-top: 10px; font-weight: 100" >Passeword :</Label>
-                                <b:inputSecret id="inputpassword" value="#{userController.passeword}" placeholder="Entrer votre mot de passe">
+                                <b:inputSecret id="inputpassword" value="#{clientController.passeword}" placeholder="Entrer votre mot de passe">
                                     <f:facet name="prepend">
                                         <b:iconAwesome name="key" style="background-color: white"/>
                                     </f:facet>
@@ -87,7 +87,7 @@
                                 
                                  <input type="checkbox"> &nbsp;Restez-connecte ?</input>
                                  
-                                 <b:commandButton style=" width: 100%; margin-top: 30px; " icon="user" class="boutonvalider btn-success" value="valider" actionListener="#{userController.connexion()}" update=":formConnexion:msg">
+                                 <b:commandButton style=" width: 100%; margin-top: 30px; " icon="user" class="boutonvalider btn-success" value="valider" actionListener="#{clientController.connexion()}" update=":formConnexion:msg">
                                 </b:commandButton>
                                  
                                 <b:row id="rowconnection" style="margin-top:40px">
